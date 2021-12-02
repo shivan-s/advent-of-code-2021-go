@@ -33,3 +33,27 @@ func ProductDepthHorizontalPosition(file string) (int, error) {
 	product := depth * horizontal_position
 	return product, err
 }
+
+func ProductDepthAimHorizontalPosition(file string) (int, error) {
+	depth := 0
+	horizontal_position := 0
+	aim := 0
+
+	movements, err := utils.ReadDataFromFile(file)
+	for _, move := range movements {
+		s := strings.Fields(move)          // [forward 5]
+		direction := s[0]                  // "forward"
+		magnitude, _ := strconv.Atoi(s[1]) // 5
+		switch direction {
+		case "forward":
+			horizontal_position = horizontal_position + magnitude
+			depth = depth + (aim * magnitude)
+		case "up":
+			aim = aim - magnitude
+		case "down":
+			aim = aim + magnitude
+		}
+	}
+	product := depth * horizontal_position
+	return product, err
+}
