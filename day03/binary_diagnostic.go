@@ -46,59 +46,57 @@ func CalculatePowerConsumption(file string) int64 {
 	return product
 }
 
-// seperate into Oxygen and CO2
+// seperate into Oxygen
+// create a slice for oxygen
+// then do through slice and keep the values needed in another slice
+// iterate through this slice again and repeat the above 2 steps
 func CalculateOxygenCO2(file string) int64 {
 	diagnostic_report, _ := utils.ReadDataFromFile(file)
-	oxy_diagnostic_report := diagnostic_report
-	co_diagnostic_report := diagnostic_report
-	var element_count int
+	oxygen_slice := diagnostic_report
+	CO2_slice := diagnostic_report
 
 	// Oxygen
-	for n := 0; n < len(diagnostic_report[0]; n++) {
-		for _, result := range diagnostic_report {
-			if result[n] == 49 { // 1
-				element_count++
+	element_count := 0
+	for i, _ := range diagnostic_report[0] {
+		for _, number := range oxygen_slice {
+			if number[i] == 49 {
+				element_count++ // counting the 1's
 			}
-		}
-		if element_count >= (len(oxy_diagnostic_report) / 2) {
-			// keep the "1s" remove the 0s 
-			for i, result := range oxy_diagnostic_report {
-				if result[n] == 49 {
-				oxy_diagnostic_report = append(oxy_diagnostic_report[:i], oxy_diagnostic_report[i+1:]...)
-				}
-			}
-		} else {
-			// keep the 0s, remove the 1s
-			for i, result := range oxy_diagnostic_report {
-				if result[n] == 48 {
-				oxy_diagnostic_report = append(oxy_diagnostic_report[:i], oxy_diagnostic_report[i+1:]...)
-				}
-			}
-		}
-	// CO2
-	for n := 0; n < len(diagnostic_report[0]; n++) {
-		for _, result := range co_diagnostic_report {
-			if result[n] == 49 { // 1
-				element_count++
-			}
-		}
 
-		if element_count >= (len(co_diagnostic_report) / 2) {
-			// keep the "1s" remove the 0s 
-			for i, result := range co_diagnostic_report {
-				if result[n] == 49 {
-				co_diagnostic_report = append(co_diagnostic_report[:i], co_diagnostic_report[i+1:]...)
+			temp_oxygen_slice := oxygen_slice
+			for j, number := range temp_oxygen_slice {
+				if element_count >= (len(diagnostic_report) / 2) { // checks if 1s are majority or if there is a tie
+					if number[i] == 48 { // removing 0
+						oxygen_slice[j] = oxygen_slice[len(oxygen_slice)-1]
+						oxygen_slice = oxygen_slice[:len(oxygen_slice)-1]
+					}
+				} else {
+					if number[i] == 49 { // removing 1
+						oxygen_slice[j] = oxygen_slice[len(oxygen_slice)-1]
+						oxygen_slice = oxygen_slice[:len(oxygen_slice)-1]
+					}
 				}
 			}
-		} else {
-			// keep the 0s, remove the 1s
-			for i, result := range co_diagnostic_report {
-				if result[n] == 48 {
-				co_diagnostic_report = append(co_diagnostic_report[:i], co_diagnostic_report[i+1:]...)
+			temp_CO2_slice := CO2_slice
+			for j, number := range temp_CO2_slice {
+				if element_count <= (len(diagnostic_report) / 2) { // checks if 1s are minotiry or if there is a tie
+					if number[i] == 48 { // removing 1
+						CO2_slice[j] = CO2_slice[len(CO2_slice)-1]
+						CO2_slice = CO2_slice[:len(CO2_slice)-1]
+					}
+				} else {
+					if number[i] == 49 { // removing 0
+						CO2_slice[j] = CO2_slice[len(CO2_slice)-1]
+						CO2_slice = CO2_slice[:len(CO2_slice)-1]
+					}
 				}
 			}
 		}
 	}
+	oxygen_binary, _ := strconv.ParseInt(oxygen_slice[0], 2, 64)
+	CO2_binary, _ := strconv.ParseInt(CO2_slice[0], 2, 64)
 
-	oxy_diagnostic_report 
+	product := oxygen_binary * CO2_binary
+
+	return product
 }
