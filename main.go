@@ -4,6 +4,7 @@ import (
 	"adventofcode2021/day02"
 	"adventofcode2021/day03"
 	"adventofcode2021/day04"
+	"adventofcode2021/day06"
 	"fmt"
 )
 
@@ -59,8 +60,37 @@ func main_day04() {
 	fmt.Println("Day 04 - Part 1:")
 	fmt.Printf("Result from sample input: %v\n", sample_ans)
 	fmt.Printf("Result from input: %v\n", ans)
+
+	// part 2
+}
+
+// func main_day05() {
+// 	// day05
+// 	sample_file := "sample_input.txt"
+// 	file := "input.txt"
+// 	// part 1
+// 	// TODO: create functions
+// }
+
+func main_day06() {
+	// day06
+	sample_file := "./day06/sample_input.txt"
+	file := "./day06/input.txt"
+	// part 1
+	sample_ans := day06.SimulateFish(sample_file, 80)
+	ans := day06.SimulateFish(file, 80)
+	fmt.Println("Day 06 - Part 1:")
+	fmt.Printf("Result from sample input: %v\n", sample_ans)
+	fmt.Printf("Result from input: %v\n", ans)
+
+	// part 2
+	p2_sample_ans := day06.SimulateFish(sample_file, 256)
+	p2_ans := day06.SimulateFish(file, 256)
+	fmt.Println("Day 06 - Part 2:")
+	fmt.Printf("Result from sample input: %v\n", p2_sample_ans)
+	fmt.Printf("Result from input: %v\n", p2_ans)
 }
 
 func main() {
-	main_day04()
+	main_day06()
 }
