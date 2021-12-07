@@ -64,7 +64,10 @@ func TestBuildField(t *testing.T) {
 }
 
 func TestDrawField(t *testing.T) {
-	test_input := readInputFromFile("sample_input.txt")
+	// test_input := readInputFromFile("sample_input.txt")
+	test_input := [][4]int{
+		{0, 9, 5, 9},
+	}
 	got := drawField(test_input)
 	want := [][]int{
 		{0, 0, 0, 0, 0, 0, 0, 1, 0, 0},

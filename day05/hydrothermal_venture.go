@@ -84,6 +84,7 @@ func drawField(lines [][4]int) [][]int {
 	HVLines := filterHVlines(lines)
 	start := 0
 	end := 0
+	var currentField [][]int
 	for _, line := range HVLines {
 		// if vertical line
 		if line[0] == line[2] {
@@ -94,10 +95,13 @@ func drawField(lines [][4]int) [][]int {
 				start = line[1]
 				end = line[3]
 			}
-			for i := start; i <= end; i++ {
-				// field[y][x]
-				field[i][line[0]] = field[i][line[0]] + 1
+			currentField = field[:]
+			for i, _ := range currentField {
+				if (start <= i) && (i <= end) {
+					field[i][line[0]]++
+				}
 			}
+			// if horizontal line
 		} else if line[1] == line[3] {
 			if line[0] > line[2] {
 				start = line[2]
@@ -107,17 +111,20 @@ func drawField(lines [][4]int) [][]int {
 				end = line[2]   // 5
 			}
 			for i := start; i <= end; i++ {
-				// field[y][x]
 				field[line[1]][i]++
-			}
-		}
-	}
-	for i, row := range field {
-		for j, _ := range row {
-			if field[i][j] != 0 {
-				field[i][j] = field[i][j]
 			}
 		}
 	}
 	return field
 }
+
+// previousFieldState := field[:]
+// for i, row := range previousFieldState {
+// 	for j, _ := range row {
+// 		if field[i][j] != 0 {
+// 			num := field[i][j]
+// 			num++
+// 			field[i][j] = num
+// 		}
+// 	}
+// }

@@ -5,6 +5,7 @@ import (
 	"adventofcode2021/day03"
 	"adventofcode2021/day04"
 	"adventofcode2021/day06"
+	"adventofcode2021/day07"
 	"fmt"
 )
 
@@ -91,6 +92,25 @@ func main_day06() {
 	fmt.Printf("Result from input: %v\n", p2_ans)
 }
 
+func main_day07() {
+	// day07
+	sample_file := "./day07/sample_input.txt"
+	file := "./day07/input.txt"
+	// part 1
+	sample_ans := day07.FindMoves(sample_file)
+	ans := day07.FindMoves(file)
+	fmt.Println("Day 07 - Part 1:")
+	fmt.Printf("Result from sample input: %v\n", sample_ans)
+	fmt.Printf("Result from input: %v\n", ans)
+
+	// part 2
+	p2_sample_ans := day07.FindMovesExpensive(sample_file)
+	p2_ans := day07.FindMovesExpensive(file)
+	fmt.Println("Day 07 - Part 2:")
+	fmt.Printf("Result from sample input: %v\n", p2_sample_ans)
+	fmt.Printf("Result from input: %v\n", p2_ans)
+}
+
 func main() {
-	main_day06()
+	main_day07()
 }
