@@ -2,6 +2,7 @@ package day08
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 )
@@ -43,4 +44,35 @@ func DigitReader(file string) int {
 		}
 	}
 	return count
+}
+
+func alphaSort(str string) string {
+	r := []rune(str)
+	for x := range r {
+		y := x + 1
+		for y = range r {
+			if r[x] < r[y] {
+				r[x], r[y] = r[y], r[x]
+			}
+		}
+	}
+	var outputStr string
+	for _, c := range r {
+		outputStr += fmt.Sprintf("%c", c)
+	}
+	return outputStr
+}
+
+// take a string slice and return a slice string mapping the number to the combination of letters.
+func mapNumbers(file string) []string {
+	input := readDataFromFile(file)
+	for _, strSlice := range input {
+		// 1 is 1 | 7 is 7
+		// 4 is 4 | 8 is 8
+		// 2 is
+		// 3 (includes 1)
+		// 5 is
+		// 6
+		// 9 (includes
+	}
 }

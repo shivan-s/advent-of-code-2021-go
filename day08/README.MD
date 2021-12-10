@@ -85,6 +85,7 @@ cdfeb fcadb cdfeb cdbaf
 
 After some careful analysis, the mapping between signal wires and segments only make sense in the following configuration:
 
+```
 dddd
 e a
 e a
@@ -92,19 +93,20 @@ ffff
 g b
 g b
 cccc
+```
 
 So, the unique signal patterns would correspond to the following digits:
 
 - acedgfb: 8
 - cdfbe: 5
 - gcdfa: 2
-  fbcad: 3
-  dab: 7
-  cefabd: 9
-  cdfgeb: 6
-  eafb: 4
-  cagedb: 0
-  ab: 1
+- fbcad: 3
+- dab: 7
+- cefabd: 9
+- cdfgeb: 6
+- eafb: 4
+- cagedb: 0
+- ab: 1
 
 Then, the four digits of the output value can be decoded:
 

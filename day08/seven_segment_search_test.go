@@ -25,6 +25,15 @@ func TestReadDataFromFile(t *testing.T) {
 	}
 }
 
+func TestAlphaSort(t *testing.T) {
+	got := alphaSort("defabc")
+	want := "abcdef"
+
+	if got != want {
+		t.Errorf("Got: %v \n Want: %v", got, want)
+	}
+}
+
 func TestDigitReader(t *testing.T) {
 	got := DigitReader("sample_input.txt")
 	want := 26
